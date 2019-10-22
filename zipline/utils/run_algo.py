@@ -18,7 +18,7 @@ from trading_calendars import get_calendar
 from zipline.data import bundles
 from zipline.data.data_portal import DataPortal
 from zipline.finance import metrics
-from zipline.finance.trading import TradingEnvironment
+from zipline.finance import trading
 from zipline.pipeline.data import USEquityPricing
 from zipline.pipeline.loaders import USEquityPricingLoader
 from zipline.utils.factory import create_simulation_parameters
@@ -151,7 +151,7 @@ def _run(handle_data,
                 "invalid url %r, must begin with 'sqlite:///'" %
                 str(bundle_data.asset_finder.engine.url),
             )
-        env = TradingEnvironment(
+        env = trading.TradingEnvironment(
             asset_db_path=connstr,
             environ=environ,
             trading_calendar=trading_calendar,
@@ -181,7 +181,7 @@ def _run(handle_data,
                 "No PipelineLoader registered for column %s." % column
             )
     else:
-        env = TradingEnvironment(
+        env = trading.TradingEnvironment(
             environ=environ,
             trading_calendar=trading_calendar,
             trading_day=trading_calendar.day,
@@ -201,7 +201,7 @@ def _run(handle_data,
         except ValueError as e:
             raise _RunAlgoError(str(e))
 
-    perf = TradingAlgorithm(
+    perf = trading.TradingAlgorithm(
         namespace=namespace,
         env=env,
         get_pipeline_loader=choose_loader,
