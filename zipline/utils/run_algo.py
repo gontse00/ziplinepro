@@ -20,7 +20,7 @@ from zipline.data.data_portal import DataPortal
 from zipline.finance import metrics
 from zipline.finance import trading
 from zipline.pipeline import data
-from zipline.pipeline.loaders import USEquityPricingLoader
+from zipline.pipeline import loaders
 from zipline.utils.factory import create_simulation_parameters
 import zipline.utils.paths as pth
 from zipline.extensions import load
@@ -169,7 +169,7 @@ def _run(handle_data,
             adjustment_reader=bundle_data.adjustment_reader,
         )
 
-        pipeline_loader = USEquityPricingLoader(
+        pipeline_loader = loaders.USEquityPricingLoader(
             bundle_data.equity_daily_bar_reader,
             bundle_data.adjustment_reader,
         )
