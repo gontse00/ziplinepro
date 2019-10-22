@@ -19,7 +19,7 @@ from zipline.data import bundles
 from zipline.data.data_portal import DataPortal
 from zipline.finance import metrics
 from zipline.finance import trading
-from zipline.pipeline.data import USEquityPricing
+from zipline.pipeline import data
 from zipline.pipeline.loaders import USEquityPricingLoader
 from zipline.utils.factory import create_simulation_parameters
 import zipline.utils.paths as pth
@@ -175,7 +175,7 @@ def _run(handle_data,
         )
 
         def choose_loader(column):
-            if column in USEquityPricing.columns:
+            if column in data.USEquityPricing.columns:
                 return pipeline_loader
             raise ValueError(
                 "No PipelineLoader registered for column %s." % column
