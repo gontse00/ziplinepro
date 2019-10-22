@@ -24,7 +24,7 @@ from zipline.pipeline import loaders
 from zipline.utils.factory import create_simulation_parameters
 import zipline.utils.paths as pth
 from zipline.extensions import load
-from zipline.algorithm import TradingAlgorithm
+from zipline import algorithm
 from zipline.finance.blotter import Blotter
 
 
@@ -201,7 +201,7 @@ def _run(handle_data,
         except ValueError as e:
             raise _RunAlgoError(str(e))
 
-    perf = trading.TradingAlgorithm(
+    perf = algorithm.TradingAlgorithm(
         namespace=namespace,
         env=env,
         get_pipeline_loader=choose_loader,
